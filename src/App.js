@@ -5,7 +5,7 @@ import Shop from "./component/Shop/Shop";
 function App() {
   return (
     <div>
-      {/* <h1>hallo world</h1> */}
+       
       <Header></Header>
       <Shop></Shop>
     </div>
