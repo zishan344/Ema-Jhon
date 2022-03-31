@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
+import AllProducts from "../../Hooks/allProducts/allProducts";
 import { addToDb, getStoredCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 const Shop = () => {
-  const [products, setPoducts] = useState([]);
+  const [products, setPoducts] = AllProducts();
   const [cart, setCart] = useState([]);
-  useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => setPoducts(data));
-  }, []);
+
   useEffect(() => {
     const saveCart = [];
     const storedCart = getStoredCart();
