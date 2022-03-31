@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AllProducts from "../../Hooks/allProducts/allProducts";
 import { addToDb, getStoredCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
@@ -7,7 +8,7 @@ import "./Shop.css";
 const Shop = () => {
   const [products, setPoducts] = AllProducts();
   const [cart, setCart] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const saveCart = [];
     const storedCart = getStoredCart();
@@ -50,7 +51,9 @@ const Shop = () => {
         ))}
       </div>
       <div className="order-container">
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart}>
+          <button onClick={() => navigate("/orders")}>Review Order</button>
+        </Cart>
         {console.log(cart)}
       </div>
     </div>
