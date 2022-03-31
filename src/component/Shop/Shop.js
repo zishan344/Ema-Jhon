@@ -54,6 +54,7 @@ const Shop = () => {
       </div>
       <div className="order-container">
         <Cart cart={cart}></Cart>
+        {console.log(cart)}
       </div>
     </div>
   );
