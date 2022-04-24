@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addToDb, getStoredCart } from "../../utilities/fakedb";
+import useCart from "../../Hooks/UseCart";
+import { addToDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 
 const Shop = () => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useCart();
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
   const [products, setPoducts] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/product?page=${page}&size${size}`)
+    fetch(`http://localhost:5000/product?page=${page}&size=${size}`)
       .then((res) => res.json())
       .then((data) => setPoducts(data));
-  }, []);
+  }, [page, size]);
 
   console.log(page);
   useEffect(() => {
@@ -28,20 +29,7 @@ const Shop = () => {
       });
   }, []);
   const navigate = useNavigate();
-  useEffect(() => {
-    const saveCart = [];
-    const storedCart = getStoredCart();
-    console.log(storedCart);
-    for (const id in storedCart) {
-      const addedProduct = products.find((product) => product._id === id);
-      if (addedProduct) {
-        const quantity = storedCart[id];
-        addedProduct.quantity = quantity;
-        saveCart.push(addedProduct);
-      }
-      setCart(saveCart);
-    }
-  }, [products]);
+
   const handleAddToCart = (selectedproduct) => {
     // console.log(product);
     let newCart = [];
