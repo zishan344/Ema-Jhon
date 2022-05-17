@@ -18,7 +18,7 @@ const Shop = () => {
       .then((data) => setPoducts(data));
   }, [page, size]);
 
-  console.log(page);
+ 
   useEffect(() => {
     fetch("http://localhost:5000/productCount")
       .then((res) => res.json())

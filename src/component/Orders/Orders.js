@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AllProducts from "../../Hooks/allProducts/allProducts";
 import useCart from "../../Hooks/UseCart";
 import { removeFromDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
@@ -8,8 +7,8 @@ import ReviewItem from "../ReviewItem/ReviewItem";
 import "./Orders.css";
 
 const Orders = () => {
-  const [products, setPoducts] = AllProducts();
   const [cart, setCart] = useCart();
+
   const handaleRemoveProduct = (product) => {
     const rest = cart.filter((pd) => pd._id !== product._id);
     setCart(rest);
